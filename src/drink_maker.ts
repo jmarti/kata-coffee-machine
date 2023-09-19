@@ -4,27 +4,27 @@ export class DrinkMaker {
 
     makeCoffee() {
         if (this.sugar_quantity) {
-            this.execute('C:1:0')
+            this.execute(`C:${this.sugar_quantity}:0`)
         }
         this.execute('C::')
     }
 
     makeTea() {
         if (this.sugar_quantity) {
-            this.execute('T:1:0')
+            this.execute(`T:${this.sugar_quantity}:0`)
         }
         this.execute('T::')
     }
 
     makeChocolate() {
         if (this.sugar_quantity) {
-            this.execute('H:1:0')
+            this.execute(`H:${this.sugar_quantity}:0`)
         }
         this.execute('H::')
     }
 
     addSugar() {
-        this.sugar_quantity = 1
+        this.sugar_quantity++
     }
     
     

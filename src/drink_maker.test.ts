@@ -46,4 +46,28 @@ describe(`Drink maker can make drinks`, () => {
 
         expect(executeSpy).toHaveBeenCalledWith('H:1:0')
     })
+
+    test(`Makes coffee with two sugars and one stick`, () => {
+        drinkMaker.addSugar()
+        drinkMaker.addSugar()
+        drinkMaker.makeCoffee()
+
+        expect(executeSpy).toHaveBeenCalledWith('C:2:0')
+    })
+
+    test(`Makes tea with two sugars and one stick`, () => {
+        drinkMaker.addSugar()
+        drinkMaker.addSugar()
+        drinkMaker.makeTea()
+
+        expect(executeSpy).toHaveBeenCalledWith('T:2:0')
+    })
+
+    test(`Makes chocolate with two sugars and one stick`, () => {
+        drinkMaker.addSugar()
+        drinkMaker.addSugar()
+        drinkMaker.makeChocolate()
+
+        expect(executeSpy).toHaveBeenCalledWith('H:2:0')
+    })
 })
