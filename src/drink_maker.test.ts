@@ -70,4 +70,13 @@ describe(`Drink maker can make drinks`, () => {
 
         expect(executeSpy).toHaveBeenCalledWith('H:2:0')
     })
+
+    test(`Can't make a drink with more than two sugars`, () => {
+        drinkMaker.addSugar()
+        drinkMaker.addSugar()
+        drinkMaker.addSugar()
+        drinkMaker.makeCoffee()
+
+        expect(executeSpy).toHaveBeenCalledWith('C:2:0')
+    })
 })

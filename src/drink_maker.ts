@@ -24,6 +24,10 @@ export class DrinkMaker {
     }
 
     addSugar() {
+        if (this.sugar_quantity === 2) {
+            return
+        }
+
         this.sugar_quantity++
     }
     
