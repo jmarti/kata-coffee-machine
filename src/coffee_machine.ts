@@ -2,7 +2,9 @@ import { DrinkMaker } from './drink_maker'
 
 export type Prices = {
     coffee: number
+    tea: number
 }
+
 export class CoffeeMachine {
     private sugar_quantity = 0
     private money_cents = 0
@@ -18,7 +20,7 @@ export class CoffeeMachine {
 
     makeCoffee() {
         if (this.money_cents < this.prices.coffee) {
-            this.drinkMaker.execute(`M:${(60 - this.money_cents) / 100} euros missing`)
+            this.drinkMaker.execute(`M:${(this.prices.coffee - this.money_cents) / 100} euros missing`)
             return
         }
 
@@ -30,6 +32,11 @@ export class CoffeeMachine {
     }
 
     makeTea() {
+        if (this.money_cents < this.prices.tea) {
+            this.drinkMaker.execute(`M:${(this.prices.tea - this.money_cents) / 100} euros missing`)
+            return
+        }
+
         if (this.sugar_quantity) {
             this.drinkMaker.execute(`T:${this.sugar_quantity}:0`)
         }

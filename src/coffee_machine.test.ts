@@ -4,7 +4,8 @@ import { CoffeeMachine } from './coffee_machine'
 import type { Prices } from './coffee_machine'
 
 const PRICES: Prices = {
-    coffee: 60
+    coffee: 60,
+    tea: 40
 }
 
 describe(`Drink maker can make drinks`, () => {
@@ -115,5 +116,14 @@ describe(`Drink maker can make drinks`, () => {
         coffeeMachine.makeCoffee()
 
         expect(executeSpy).toHaveBeenCalledWith('C::')
+    })
+
+    test(`Can't make a tea with not enough money`, () => {
+        const moneyCents = PRICES.tea - 1
+        
+        coffeeMachine.addMoney(moneyCents)
+        coffeeMachine.makeTea()
+
+        expect(executeSpy).toHaveBeenCalledWith('M:0.01 euros missing')
     })
 })
