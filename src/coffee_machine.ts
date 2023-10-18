@@ -6,6 +6,12 @@ export type Prices = {
     chocolate: number
 }
 
+enum Drink {
+    coffee = 'coffee',
+    tea = 'tea',
+    chocolate = 'chocolate'
+}
+
 export class CoffeeMachine {
     private sugar_quantity = 0
     private money_cents = 0
@@ -15,13 +21,17 @@ export class CoffeeMachine {
         private prices: Prices
     ) { }
 
-    addMoney(money_cents: number) {
+    setMoney(money_cents: number) {
         this.money_cents = money_cents
+    }
+    
+    isEnoughMoney(drink: Drink): boolean {
+        return this.money_cents >= this.prices[drink]
     }
 
     makeCoffee() {
-        if (this.money_cents < this.prices.coffee) {
-            this.drinkMaker.execute(`M:${(this.prices.coffee - this.money_cents) / 100} euros missing`)
+        if (!this.isEnoughMoney(Drink.coffee)) {
+            this.sendMessage(`${(this.prices.coffee - this.money_cents) / 100} euros missing`)
             return
         }
 
@@ -33,8 +43,8 @@ export class CoffeeMachine {
     }
 
     makeTea() {
-        if (this.money_cents < this.prices.tea) {
-            this.drinkMaker.execute(`M:${(this.prices.tea - this.money_cents) / 100} euros missing`)
+        if (!this.isEnoughMoney(Drink.tea)) {
+            this.sendMessage(`${(this.prices.tea - this.money_cents) / 100} euros missing`)
             return
         }
 
@@ -45,8 +55,8 @@ export class CoffeeMachine {
     }
 
     makeChocolate() {
-        if (this.money_cents < this.prices.chocolate) {
-            this.drinkMaker.execute(`M:${(this.prices.chocolate - this.money_cents) / 100} euros missing`)
+        if (!this.isEnoughMoney(Drink.chocolate)) {
+            this.sendMessage(`${(this.prices.chocolate - this.money_cents) / 100} euros missing`)
             return
         }
 
@@ -62,5 +72,9 @@ export class CoffeeMachine {
         }
 
         this.sugar_quantity++
+    }
+
+    sendMessage(message: string) {
+        this.drinkMaker.execute(`M:${message}`)
     }
 }
