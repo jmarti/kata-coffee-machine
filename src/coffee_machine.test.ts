@@ -13,24 +13,28 @@ describe(`Drink maker can make drinks`, () => {
     })
 
     test(`Makes coffee`, () => {
+        coffeeMachine.addMoney(Infinity)
         coffeeMachine.makeCoffee()
 
         expect(executeSpy).toHaveBeenCalledWith('C::')
     })
 
     test(`Makes tea`, () => {
+        coffeeMachine.addMoney(Infinity)
         coffeeMachine.makeTea()
     
         expect(executeSpy).toHaveBeenCalledWith('T::')
     })
 
     test(`Makes chocolate`, () => {
+        coffeeMachine.addMoney(Infinity)
         coffeeMachine.makeChocolate()
     
         expect(executeSpy).toHaveBeenCalledWith('H::')
     })
 
     test(`Makes coffee with one sugar and one stick`, () => {
+        coffeeMachine.addMoney(Infinity)
         coffeeMachine.addSugar()
         coffeeMachine.makeCoffee()
 
@@ -38,6 +42,7 @@ describe(`Drink maker can make drinks`, () => {
     })
 
     test(`Makes tea with one sugar and one stick`, () => {
+        coffeeMachine.addMoney(Infinity)
         coffeeMachine.addSugar()
         coffeeMachine.makeTea()
 
@@ -45,6 +50,7 @@ describe(`Drink maker can make drinks`, () => {
     })
 
     test(`Makes chocolate with one sugar and one stick`, () => {
+        coffeeMachine.addMoney(Infinity)
         coffeeMachine.addSugar()
         coffeeMachine.makeChocolate()
 
@@ -52,6 +58,7 @@ describe(`Drink maker can make drinks`, () => {
     })
 
     test(`Makes coffee with two sugars and one stick`, () => {
+        coffeeMachine.addMoney(Infinity)
         coffeeMachine.addSugar()
         coffeeMachine.addSugar()
         coffeeMachine.makeCoffee()
@@ -60,6 +67,7 @@ describe(`Drink maker can make drinks`, () => {
     })
 
     test(`Makes tea with two sugars and one stick`, () => {
+        coffeeMachine.addMoney(Infinity)
         coffeeMachine.addSugar()
         coffeeMachine.addSugar()
         coffeeMachine.makeTea()
@@ -68,6 +76,7 @@ describe(`Drink maker can make drinks`, () => {
     })
 
     test(`Makes chocolate with two sugars and one stick`, () => {
+        coffeeMachine.addMoney(Infinity)
         coffeeMachine.addSugar()
         coffeeMachine.addSugar()
         coffeeMachine.makeChocolate()
@@ -76,6 +85,7 @@ describe(`Drink maker can make drinks`, () => {
     })
 
     test(`Can't make a drink with more than two sugars`, () => {
+        coffeeMachine.addMoney(Infinity)
         coffeeMachine.addSugar()
         coffeeMachine.addSugar()
         coffeeMachine.addSugar()
@@ -91,5 +101,14 @@ describe(`Drink maker can make drinks`, () => {
         coffeeMachine.makeCoffee()
 
         expect(executeSpy).toHaveBeenCalledWith('M:0.01 euros missing')
+    })
+
+    test(`Makes a coffe with enough money`, () => {
+        const moneyCents = 60
+        
+        coffeeMachine.addMoney(moneyCents)
+        coffeeMachine.makeCoffee()
+
+        expect(executeSpy).toHaveBeenCalledWith('C::')
     })
 })

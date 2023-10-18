@@ -11,7 +11,7 @@ export class CoffeeMachine {
     }
 
     makeCoffee() {
-        if (this.money_cents) {
+        if (this.money_cents < 60) {
             this.drinkMaker.execute(`M:${(60 - this.money_cents) / 100} euros missing`)
             return
         }
