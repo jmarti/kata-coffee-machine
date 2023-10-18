@@ -19,7 +19,7 @@ describe(`Coffee machine functionality`, () => {
         executeSpy = vi.spyOn(drinkMaker, 'execute')
     })
 
-    describe(`Can makes beverages`, () => {
+    describe(`Can makes drinks`, () => {
         test(`Makes coffee`, () => {
             coffeeMachine.setMoney(Infinity)
             coffeeMachine.makeCoffee()
