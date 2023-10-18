@@ -83,4 +83,13 @@ describe(`Drink maker can make drinks`, () => {
 
         expect(executeSpy).toHaveBeenCalledWith('C:2:0')
     })
+
+    test(`Can't make a coffe with not enough money`, () => {
+        const moneyCents = 59
+        
+        coffeeMachine.addMoney(moneyCents)
+        coffeeMachine.makeCoffee()
+
+        expect(executeSpy).toHaveBeenCalledWith('M:0.01 euros missing')
+    })
 })
