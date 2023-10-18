@@ -1,6 +1,11 @@
 import { SpyInstance, beforeEach, describe, expect, test, vi } from 'vitest'
 import { DrinkMaker } from './drink_maker'
 import { CoffeeMachine } from './coffee_machine'
+import type { Prices } from './coffee_machine'
+
+const PRICES: Prices = {
+    coffee: 60
+}
 
 describe(`Drink maker can make drinks`, () => {
     let coffeeMachine: CoffeeMachine
@@ -8,7 +13,7 @@ describe(`Drink maker can make drinks`, () => {
 
     beforeEach(() => {
         const drinkMaker = new DrinkMaker()
-        coffeeMachine = new CoffeeMachine(drinkMaker)
+        coffeeMachine = new CoffeeMachine(drinkMaker, PRICES)
         executeSpy = vi.spyOn(drinkMaker, 'execute')
     })
 
@@ -95,7 +100,7 @@ describe(`Drink maker can make drinks`, () => {
     })
 
     test(`Can't make a coffe with not enough money`, () => {
-        const moneyCents = 59
+        const moneyCents = PRICES.coffee - 1
         
         coffeeMachine.addMoney(moneyCents)
         coffeeMachine.makeCoffee()
@@ -104,7 +109,7 @@ describe(`Drink maker can make drinks`, () => {
     })
 
     test(`Makes a coffe with enough money`, () => {
-        const moneyCents = 60
+        const moneyCents = PRICES.coffee
         
         coffeeMachine.addMoney(moneyCents)
         coffeeMachine.makeCoffee()
